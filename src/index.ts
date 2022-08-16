@@ -6,6 +6,7 @@ import morgan from "morgan";
 import { createServer } from "http";
 
 import log from "@libs/logger";
+import connectToDataBase from "utils/connect-db";
 
 dotenv.config();
 
@@ -22,5 +23,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 httpServer.listen(PORT, () => {
+  connectToDataBase();
   log.info(`Server is Running on ${PORT}`);
 });
